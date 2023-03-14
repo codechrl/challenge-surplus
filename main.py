@@ -26,6 +26,7 @@ app.add_middleware(
 )
 
 app.include_router(health.router, prefix="/api/health", tags=["Health Test"])
+app.include_router(category.router, prefix="/api/category", tags=["Category"])
 
 
 @app.on_event("startup")
