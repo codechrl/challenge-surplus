@@ -6,6 +6,7 @@ from schema.category import Category
 from schema.category_product import CategoryProductDetail
 from schema.image import Image
 from schema.product import Product
+from schema.product_image import ProductImageDetail
 
 T = TypeVar("T")
 
@@ -29,6 +30,11 @@ class CategoryProductIdMessage(BaseModel):
     category_id: int
 
 
+class ProductImageIdMessage(BaseModel):
+    product_id: int
+    image_id: int
+
+
 class Pagination(BaseModel):
     page: int
     limit: int
@@ -40,7 +46,9 @@ class Response(BaseModel):
     status: str = "success"
     code: int = 200
     message: Union[dict, str, List[ValidationError]] = None
-    data: Union[List[T], IdMessage, CategoryProductIdMessage] = None
+    data: Union[
+        List[T], IdMessage, CategoryProductIdMessage, ProductImageIdMessage
+    ] = None
     pagination: Pagination = None
 
 
@@ -70,3 +78,11 @@ class CategoryProductDetailResponse(Response):
 
 class ImageResponse(Response):
     data: List[Image] = None
+
+
+class ProductImageDetailResponse(Response):
+    data: List[ProductImageDetail] = None
+
+
+class ProductImageIdResponse(Response):
+    data: ProductImageIdMessage = None
