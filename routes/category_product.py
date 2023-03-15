@@ -23,6 +23,8 @@ async def get_category_product(
     product_id: int = None,
     page: int = 1,
     limit: int = 10,
+    order_by: str = "product_id",
+    asc: bool = True,
 ):
     try:
         database = db.get_database()
@@ -59,6 +61,11 @@ async def get_category_product(
         )
 
         query = query.limit(limit).offset(limit * (page - 1))
+
+        if asc:
+            query = query.order_by(table.c[order_by].asc())
+        else:
+            query = query.order_by(table.c[order_by].desc())
 
         query = query.join(table_product, table.c.product_id == table_product.c.id)
         query = query.join(table_category, table.c.category_id == table_category.c.id)
