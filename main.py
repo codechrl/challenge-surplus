@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
 from db import db
-from routes import category, category_product, health, image, product
+from routes import category, category_product, health, image, product, product_image
 
 app = FastAPI(
     title="Surplus Challenge",
@@ -31,6 +31,9 @@ app.include_router(
     category_product.router, prefix="/api/category-product", tags=["Category & Product"]
 )
 app.include_router(image.router, prefix="/api/image", tags=["Image"])
+app.include_router(
+    product_image.router, prefix="/api/product-image", tags=["Product & Image"]
+)
 
 
 @app.on_event("startup")
