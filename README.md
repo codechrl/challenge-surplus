@@ -55,4 +55,8 @@ The above command will run the project inside a Docker container and expose it o
 
 Once the app is running, you can access the Swagger UI API at **`http://localhost:8000/api/docs`**.
 
+![A cute cat](./readme/swagger.png "Swagger")
+
 Also you can access the OpenAPI Redoc at **`http://localhost:8000/api/redoc`**.
+
+![A cute cat](./readme/redoc.png "Redoc")
