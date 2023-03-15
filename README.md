@@ -1,6 +1,6 @@
 # **Challenge Surplus**
 
-Developed on Ubuntu 22.04 using Python 3.10 and FastAPI framework.
+Developed on Ubuntu 22.04 using Python 3.10, FastAPI framework and PostgreSQL.
 
 ## **Installation**
 
