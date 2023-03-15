@@ -3,9 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 
 from db import db
-from routes import category, health
-
-# from routes.user import oauth2_scheme
+from routes import category, category_product, health, image, product
 
 app = FastAPI(
     title="Surplus Challenge",
@@ -25,17 +23,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(health.router, prefix="/api/health", tags=["Health Test"])
 app.include_router(category.router, prefix="/api/category", tags=["Category"])
+app.include_router(product.router, prefix="/api/product", tags=["Product"])
+app.include_router(
+    category_product.router, prefix="/api/category-product", tags=["Category & Product"]
+)
+app.include_router(image.router, prefix="/api/image", tags=["Image"])
 
 
 @app.on_event("startup")
 async def startup():
     await db.open_pool()
-    pass
 
 
 @app.on_event("shutdown")
 async def shutdown():
     await db.close_pool()
-    pass

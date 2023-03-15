@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 from schema.category import Category
 from schema.category_product import CategoryProductDetail
+from schema.image import Image
 from schema.product import Product
 
 T = TypeVar("T")
@@ -65,3 +66,7 @@ class ProductResponse(Response):
 
 class CategoryProductDetailResponse(Response):
     data: List[CategoryProductDetail] = None
+
+
+class ImageResponse(Response):
+    data: List[Image] = None
